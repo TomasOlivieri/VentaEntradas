@@ -5,20 +5,23 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
-
+import java.io.File;
 import VentaEntradas.Model.Estadio;
 
+
 public class ArchEstadioDAO implements ICrud <Estadio>{
-    private static final String nombreArchivo = "Archivos/Estadio.txt";
+    private static final String nombreArchivo = "Archivos";
 
     @Override
 	public void grabar(Estadio e) throws IOException {
-		FileOutputStream fos = new FileOutputStream(String.valueOf(e.getIdEstadio()).concat(".txt"));
-		ObjectOutputStream oos = new ObjectOutputStream(fos);
-		oos.writeObject(e);
-		oos.close();
-		fos.close();
-	}
+            File carpeta = new File(nombreArchivo);
+            File archivo = new File(carpeta, e.getIdEstadio() + ".txt");
+            FileOutputStream fos = new FileOutputStream(archivo);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(e);
+            oos.close();
+            fos.close();
+        }
 
     @Override
 	public Estadio leer() throws IOException, ClassNotFoundException {

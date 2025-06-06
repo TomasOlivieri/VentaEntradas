@@ -1,6 +1,9 @@
 package VentaEntradas.Model;
 
-public class Estadio {
+import java.io.Serializable;
+
+
+public class Estadio implements Serializable {
     private final int idEstadio;
     private String descripcion;
     private int capacidad;
