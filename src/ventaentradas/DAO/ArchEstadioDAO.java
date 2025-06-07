@@ -7,10 +7,11 @@ import java.io.ObjectOutputStream;
 import java.util.List;
 import java.io.File;
 import VentaEntradas.Model.Estadio;
+import java.util.ArrayList;
 
 
 public class ArchEstadioDAO implements ICrud <Estadio>{
-    private static final String nombreArchivo = "Archivos";
+    private static final String nombreArchivo = "Archivos/Estadios";
 
     @Override
 	public void grabar(Estadio e) throws IOException {
@@ -23,6 +24,7 @@ public class ArchEstadioDAO implements ICrud <Estadio>{
             fos.close();
         }
 
+        
     @Override
 	public Estadio leer() throws IOException, ClassNotFoundException {
 		FileInputStream fis = new FileInputStream(nombreArchivo);
@@ -33,6 +35,7 @@ public class ArchEstadioDAO implements ICrud <Estadio>{
 		return e;
 	}
 
+        
     @Override
 	public Estadio leer(Integer id) throws IOException, ClassNotFoundException {
 		FileInputStream fis = new FileInputStream(String.valueOf(id));
@@ -43,11 +46,31 @@ public class ArchEstadioDAO implements ICrud <Estadio>{
 		return e;
 	}
 
+        
     @Override
-	public List<Estadio> leerTodos() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+        public List<Estadio> leerTodos() {
+            List<Estadio> estadios = new ArrayList<>();
+            File carpeta = new File(nombreArchivo);
+
+            // Obtener todos los archivos en la carpeta
+            File[] archivos = carpeta.listFiles((dir, name) -> name.endsWith(".txt"));
+
+            if (archivos != null) {
+                for (File archivo : archivos) {
+                    try (FileInputStream fis = new FileInputStream(archivo);
+                        ObjectInputStream ois = new ObjectInputStream(fis)) {
+
+                        Estadio estadio = (Estadio) ois.readObject();
+                        estadios.add(estadio);
+
+                    } catch (IOException | ClassNotFoundException e) {
+                    System.err.println("Error al leer el archivo: " + archivo.getName());
+                }
+            }
+        }
+        return estadios;
+    }
+    
 
 	@Override
 	public void modificar(Estadio t) {

@@ -26,7 +26,7 @@ public class VentanaEstadios extends JFrame {
         // Crear botón "Volver"
         JButton btnVolver = new JButton("Volver a Inicio");
         btnVolver.addActionListener(e -> {
-            new PantallaBienvenida(estadios);
+            new PantallaBienvenida();
             dispose(); // Cierra la ventana actual
         });
 
