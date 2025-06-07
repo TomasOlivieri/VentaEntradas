@@ -5,6 +5,7 @@ import VentaEntradas.Model.Estadio;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import ventaentradas.View.PantallaBienvenida;
 import ventaentradas.View.VentanaEstadios;
 
 
@@ -22,6 +23,6 @@ public class Main {
         listaEstadios.add(e2);
         listaEstadios.add(e3);
         
-        new VentanaEstadios(listaEstadios);
+        new PantallaBienvenida(listaEstadios);
     }
 }
