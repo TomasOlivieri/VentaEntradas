@@ -25,4 +25,10 @@ public class ControllerEstadio {
             System.err.println("Error al guardar el estadio: " + e.getMessage());
         }
     }
+    
+    public void eliminarEstadio(Estadio estadio) {
+        ArchEstadioDAO dao = new ArchEstadioDAO();
+        dao.eliminar(estadio);
+    }
+
 }

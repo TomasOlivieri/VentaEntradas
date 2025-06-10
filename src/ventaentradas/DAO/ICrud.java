@@ -10,5 +10,6 @@ public interface ICrud<T> {
 	public T leer(Integer id) throws IOException, ClassNotFoundException;
 	public List<T> leerTodos();
 	public void modificar(T t);
+        public void eliminar(T t); 
 
 }

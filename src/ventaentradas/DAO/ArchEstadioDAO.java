@@ -72,10 +72,27 @@ public class ArchEstadioDAO implements ICrud <Estadio>{
     }
     
 
-	@Override
-	public void modificar(Estadio t) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void modificar(Estadio t) {
+        System.out.println("a implementar");
+    }
+
+    
+    @Override
+    public void eliminar(Estadio t) {
+        File carpeta = new File(nombreArchivo);
+        File archivo = new File(carpeta, t.getIdEstadio() + ".txt");
+
+        if (archivo.exists()) {
+            if (archivo.delete()) {
+                System.out.println("Estadio eliminado correctamente: " + t.getIdEstadio());
+            } else {
+                System.err.println("Error al eliminar el archivo del estadio: " + t.getIdEstadio());
+            }
+        } else {
+        System.err.println("El archivo del estadio no existe: " + t.getIdEstadio());
+    }
+}
+
 
 }
