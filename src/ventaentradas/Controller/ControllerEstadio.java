@@ -30,5 +30,9 @@ public class ControllerEstadio {
         ArchEstadioDAO dao = new ArchEstadioDAO();
         dao.eliminar(estadio);
     }
-
+    
+    public void actualizarEstadio(Estadio estadio) throws IOException {
+        ArchEstadioDAO dao = new ArchEstadioDAO();
+        dao.grabar(estadio);
+    }
 }

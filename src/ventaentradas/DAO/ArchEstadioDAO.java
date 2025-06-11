@@ -73,13 +73,14 @@ public class ArchEstadioDAO implements ICrud <Estadio>{
     
 
     @Override
-    public void modificar(Estadio t) {
-        System.out.println("a implementar");
+    public void modificar(Estadio t) throws IOException, ClassNotFoundException {
+        this.eliminar(t);
+        this.grabar(t);
     }
 
     
     @Override
-    public void eliminar(Estadio t) {
+    public void eliminar(Estadio t) throws IOException, ClassNotFoundException{
         File carpeta = new File(nombreArchivo);
         File archivo = new File(carpeta, t.getIdEstadio() + ".txt");
 
@@ -91,8 +92,6 @@ public class ArchEstadioDAO implements ICrud <Estadio>{
             }
         } else {
         System.err.println("El archivo del estadio no existe: " + t.getIdEstadio());
+        }
     }
-}
-
-
 }

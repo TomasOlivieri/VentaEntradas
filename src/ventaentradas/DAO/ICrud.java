@@ -8,8 +8,8 @@ public interface ICrud<T> {
 	public void grabar(T t) throws IOException;
 	public T leer() throws IOException, ClassNotFoundException;
 	public T leer(Integer id) throws IOException, ClassNotFoundException;
-	public List<T> leerTodos();
-	public void modificar(T t);
-        public void eliminar(T t); 
+	public List<T> leerTodos() throws IOException, ClassNotFoundException;
+	public void modificar(T t) throws IOException, ClassNotFoundException;
+        public void eliminar(T t) throws IOException, ClassNotFoundException; 
 
 }

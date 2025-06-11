@@ -27,7 +27,7 @@ public class VentanaEstadios extends JFrame {
         JTable table = new JTable(model);
 
         for (Estadio e : estadios) {
-            model.addRow(new Object[]{e.getIdEstadio(), e.getDescripcion(), e.getCapacidad(), "✏️", "🗑️"});
+            model.addRow(new Object[]{e.getIdEstadio(), e.getDescripcion(), e.getCapacidad(), "Editar️", "Eliminar️"});
         }
 
         // Renderizar los botones de Editar y Eliminar
@@ -36,8 +36,8 @@ public class VentanaEstadios extends JFrame {
 
         // Agregar acción a los botones
         ControllerEstadio controller = new ControllerEstadio();
-        //table.getColumn("Editar").setCellEditor());
-        table.getColumn("Eliminar").setCellEditor(new ButtonEditor(new JButton("Elim️"), estadios, controller));
+        table.getColumn("Editar").setCellEditor(new ButtonEditor(new JButton("Editar"), estadios, controller));
+        table.getColumn("Eliminar").setCellEditor(new ButtonEditor(new JButton("Eliminar"), estadios, controller));
 
         // Botón "Volver"
         JButton btnVolver = new JButton("Volver a Inicio");

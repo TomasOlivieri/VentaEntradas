@@ -14,6 +14,7 @@ public class ButtonEditor extends DefaultCellEditor {
     private List<Estadio> estadios;
     private int row;
     private ControllerEstadio controller;
+    private JTable table;
 
     public ButtonEditor(JButton btn, List<Estadio> estadios, ControllerEstadio controller) {
         super(new JTextField());
@@ -35,7 +36,7 @@ public class ButtonEditor extends DefaultCellEditor {
     public Object getCellEditorValue() {
         if (isPushed) {
             Estadio estadio = estadios.get(row);
-            if ("🗑️".equals(button.getText())) {
+            if ("Eliminar".equals(button.getText())) {
                 int confirm = JOptionPane.showConfirmDialog(button, "¿Seguro que quieres eliminar el estadio: " + estadio.getDescripcion() + "?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
                 if (confirm == JOptionPane.YES_OPTION) {
                     controller.eliminarEstadio(estadio);
@@ -44,7 +45,9 @@ public class ButtonEditor extends DefaultCellEditor {
                     new VentanaEstadios(estadios);
                     JOptionPane.showMessageDialog(button, "Estadio eliminado y lista actualizada.");
                 }
-
+            }
+            else if ("Editar️️".equals(button.getText())) {
+                new FormularioEditarEstadio(estadio, controller, table); // Abre el formulario de edición
             }
         }
         isPushed = false;
